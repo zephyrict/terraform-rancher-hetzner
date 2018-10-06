@@ -13,10 +13,10 @@ resource "null_resource" "rancher" {
       "while fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do sleep 1; done",
 
       # Create Data Volume Container
-      "sudo docker create --name rancher-data rancher/rancher:v2.0.0",
+      "sudo docker create --name rancher-data rancher/rancher:v2.1.0",
 
       # Creater Rancher v2.0.0 Container
-      "sudo docker run -d --name rancher-server --restart=unless-stopped --volumes-from rancher-data -p 0.0.0.0:80:80 -p 0.0.0.0:443:443 rancher/rancher:v2.0.0 --acme-domain ${format(var.hostname_format, 1)}.${var.domain}",
+      "sudo docker run -d --name rancher-server --restart=unless-stopped --volumes-from rancher-data -p 0.0.0.0:80:80 -p 0.0.0.0:443:443 rancher/rancher:v2.1.0 --acme-domain ${format(var.hostname_format, 1)}.${var.domain}",
     ]
   }
 }
