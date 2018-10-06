@@ -176,9 +176,12 @@ EOT
   provisioner "local-exec" {
     when = "destroy"
     command = <<EOT
-export RECORD_ID=$(curl -s "https://api.zeit.co/v2/domains/${var.hetzner_domain}/records" -H "Authorization: Bearer ${var.zeit_token}" | jq -r '.records[] | select((.value=="${self.ipv4_address}") and (.type=="A")) | .id')
-echo $RECORD_ID
-curl -s -X DELETE https://api.zeit.co/v2/domains/${var.hetzner_domain}/records/$RECORD_ID -H "Authorization: Bearer ${var.zeit_token}"
+export RECORD_IDS=$(curl -s "https://api.zeit.co/v2/domains/${var.hetzner_domain}/records" -H "Authorization: Bearer ${var.zeit_token}" | jq -r '.records[] | select(.type=="A") | .id')
+for RECORD_ID in $RECORD_IDS
+do
+  echo $RECORD_ID
+  curl -s -X DELETE https://api.zeit.co/v2/domains/${var.hetzner_domain}/records/$RECORD_ID -H "Authorization: Bearer ${var.zeit_token}"
+done
 EOT
   }
 }
