@@ -10,7 +10,7 @@ resource "null_resource" "nginx" {
   provisioner "remote-exec" {
     inline = [
       "while fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do sleep 1; done",
-      "sudo apt-get install -y ${join(" ", var.apt_install_master)}",
+      "sudo apt-get install -y docker.io ${join(" ", var.apt_install_master)}",
       "while fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do sleep 1; done",
       "[ -d /var/www/html ] || sudo mkdir -p /var/www/html",
     ]

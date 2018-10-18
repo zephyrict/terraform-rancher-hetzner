@@ -12,11 +12,14 @@ resource "null_resource" "rancher" {
       # Prepare nginx filesystem
       "while fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do sleep 1; done",
 
-      # Create Data Volume Container
-      "sudo docker create --name rancher-data rancher/rancher:v2.1.0",
+      # Maker sure we have docker installed
+      "sudo apt-get install -y docker.io",
 
-      # Creater Rancher v2.0.0 Container
-      "sudo docker run -d --name rancher-server --restart=unless-stopped --volumes-from rancher-data -p 0.0.0.0:80:80 -p 0.0.0.0:443:443 rancher/rancher:v2.1.0 --acme-domain ${format(var.hostname_format, 1)}.${var.domain}",
+      # Create Data Volume Container
+      "sudo docker create --name rancher-data rancher/rancher:v2.1.1-rc2",
+
+      # Creater Rancher v2.1.1-rc2 Container
+      "sudo docker run -d --name rancher-server --restart=unless-stopped --volumes-from rancher-data -p 0.0.0.0:80:80 -p 0.0.0.0:443:443 rancher/rancher:v2.1.1-rc2 --acme-domain ${format(var.hostname_format, 1)}.${var.domain}",
     ]
   }
 }

@@ -20,11 +20,14 @@ resource "null_resource" "rancher" {
       "sudo ln -s /etc/nginx/sites-available/${format(var.hostname_format, count.index + 1)}.${var.domain} /etc/nginx/sites-enabled",
       "sudo rm /etc/nginx/sites-enabled/default",
 
-      # Create Data Volume Container
-      "sudo docker create --name rancher-data rancher/rancher:v2.1.0",
+      # Maker sure we have docker installed
+      "sudo apt-get install -y docker.io",
 
-      # Creater Rancher v2.0.0 Container
-      "sudo docker run -d --name rancher-server --restart=unless-stopped --volumes-from rancher-data -p 127.0.0.1:8080:80 rancher/rancher:v2.1.0",
+      # Create Data Volume Container
+      "sudo docker create --name rancher-data rancher/rancher:v2.1.1-rc2",
+
+      # Creater Rancher v2.1.1-rc2 Container
+      "sudo docker run -d --name rancher-server --restart=unless-stopped --volumes-from rancher-data -p 127.0.0.1:8080:80 rancher/rancher:v2.1.1-rc2",
     ]
   }
 
