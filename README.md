@@ -83,3 +83,6 @@ rancher login https://node-001.<your-domain> -t token-abcdef
 ```
 
 
+PERSONAL NOTES:
+- Often individual packages aren't installed properly on some nodes, problem with Terraform or scripts?
+- When starting rancher-agent, the --ca-checksum is wrong, is it because I changed version of Rancher?
