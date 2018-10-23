@@ -20,9 +20,6 @@ resource "null_resource" "rancher" {
       "sudo ln -s /etc/nginx/sites-available/${format(var.hostname_format, count.index + 1)}.${var.domain} /etc/nginx/sites-enabled",
       "sudo rm /etc/nginx/sites-enabled/default",
 
-      # Maker sure we have docker installed
-      "sudo apt-get install -y docker.io",
-
       # Create Data Volume Container
       "sudo docker create --name rancher-data rancher/rancher:v2.1.1-rc2",
 

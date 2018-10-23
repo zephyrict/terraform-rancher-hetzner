@@ -37,6 +37,17 @@ EOT
     type = "ssh"
   }
 
+  provisioner "file" {
+    source      = "common/install.sh"
+    destination = "/tmp/install.sh"
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "sudo chmod 700 /tmp/install.sh"
+    ]
+  }
+
+
   provisioner "remote-exec" {
     inline = [
       "while fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do sleep 1; done",
@@ -56,7 +67,8 @@ EOT
       "sudo apt-get update -y",
       "while fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do sleep 1; done",
       "sudo echo 'Installing packages ufw unattended-upgrades sendmail docker.io ${join(" ", var.hetzner_apt_install_packages)}'",
-      "sudo apt-get install -y ufw unattended-upgrades sendmail docker.io ${join(" ", var.hetzner_apt_install_packages)}",
+      # "sudo apt-get install -y ufw unattended-upgrades sendmail docker.io ${join(" ", var.hetzner_apt_install_packages)}",
+      "/tmp/install.sh 'sendmail docker.io ${join(" ", var.hetzner_apt_install_packages)}'",
       "while fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do sleep 1; done",
 
       # Setup cron jobs in crontab

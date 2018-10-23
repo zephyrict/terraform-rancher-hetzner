@@ -12,9 +12,6 @@ resource "null_resource" "rancher" {
       # Prepare nginx filesystem
       "while fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do sleep 1; done",
 
-      # Maker sure we have docker installed
-      "sudo apt-get install -y docker.io",
-
       # Create Data Volume Container
       "sudo docker create --name rancher-data rancher/rancher:v2.1.1-rc2",
 
