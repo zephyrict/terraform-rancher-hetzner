@@ -9,7 +9,6 @@ resource "hcloud_server" "host" {
   server_type   = "${var.hetzner_server_type}"
   ssh_keys      = ["${hcloud_ssh_key.ssh_key.id}"]
   iso           = "${var.hetzner_iso_image}"
-  backup_window = "${var.hetzner_backup_window}"
   keep_disk     = "${var.hetzner_keep_disk}"
   rescue        = "${var.hetzner_rescue}"
   user_data     = <<EOT
@@ -131,7 +130,7 @@ EOT
       # Prevent IP Spoofing
       "echo 'Prevent IP Spoofing...'",
       "sudo sed -i 's/order hosts,bind/order bind,hosts/g' /etc/host.conf",
-      "sudo sed -i 's/multi on/nospoof on/g' /etc/host.conf",
+      # "sudo sed -i 's/multi on/nospoof on/g' /etc/host.conf",
 
       # Adding Warning Message in the Login Banner
       "echo 'Setting Banners...'",
@@ -197,4 +196,3 @@ done
 EOT
   }
 }
-
