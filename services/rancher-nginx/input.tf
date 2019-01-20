@@ -20,7 +20,7 @@ variable "hostname_format" {
 }
 
 variable "domain" {
-  description = "Donain"
+  description = "Domain"
   type = "string"
 }
 

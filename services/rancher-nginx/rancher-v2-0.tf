@@ -21,10 +21,10 @@ resource "null_resource" "rancher" {
       "sudo rm /etc/nginx/sites-enabled/default",
 
       # Create Data Volume Container
-      "sudo docker create --name rancher-data rancher/rancher:v2.1.1-rc2",
+      "sudo docker create --name rancher-data rancher/rancher:v2.1.5",
 
-      # Creater Rancher v2.1.1-rc2 Container
-      "sudo docker run -d --name rancher-server --restart=unless-stopped --volumes-from rancher-data -p 127.0.0.1:8080:80 rancher/rancher:v2.1.1-rc2",
+      # Creater Rancher v2.1.5 Container
+      "sudo docker run -d --name rancher-server --restart=unless-stopped --volumes-from rancher-data -p 127.0.0.1:8080:80 rancher/rancher:v2.1.5",
     ]
   }
 

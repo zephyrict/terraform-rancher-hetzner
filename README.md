@@ -53,9 +53,8 @@ hetzner_server_count         = "<your-number-of-server-nodes-to-provision>"
 hetzner_server_type          = "cx21"
 hetzner_datacenter           = "nbg1-dc3"
 hetzner_hostname_format      = "node-%03d"
-hetzner_image                = "ubuntu-16.04"
+hetzner_image                = "ubuntu-18.04"
 hetzner_keep_disk            = "false"
-hetzner_backup_window        = "02-06"
 hetzner_iso_image            = ""
 hetzner_rescue               = ""
 hetzner_apt_install_packages = ["python-pip","vim","software-properties-common","ufw","ceph-common","nfs-common","jq","tmux"]
@@ -86,3 +85,5 @@ rancher login https://node-001.<your-domain> -t token-abcdef
 PERSONAL NOTES:
 - Often individual packages aren't installed properly on some nodes, problem with Terraform or scripts?
 - When starting rancher-agent, the --ca-checksum is wrong, is it because I changed version of Rancher?
+- I had to remove hetzner_backup_window because it's deprecated and causes issues.
+- Also had to remove "nospoof" in the hardening section of the server.tf as it prevented the installtion to finish.
