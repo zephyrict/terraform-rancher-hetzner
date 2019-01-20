@@ -63,11 +63,6 @@ variable "hetzner_keep_disk" {
   type    = "string"
 }
 
-variable "hetzner_backup_window" {
-  description = "Hetzner backup window in UTC e.g. '22-02'"
-  type    = "string"
-}
-
 variable "hetzner_iso_image" {
   description = "Hetzner iso image name to mount"
   type    = "string"

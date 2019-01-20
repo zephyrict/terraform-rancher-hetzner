@@ -13,7 +13,6 @@ module "provider" {
   hetzner_hostname_format      = "${var.hetzner_hostname_format}"
   hetzner_image                = "${var.hetzner_image}"
   hetzner_keep_disk            = "${var.hetzner_keep_disk}"
-  hetzner_backup_window        = "${var.hetzner_backup_window}"
   hetzner_iso_image            = "${var.hetzner_iso_image}"
   hetzner_rescue               = "${var.hetzner_rescue}"
   hetzner_apt_install_packages = "${var.hetzner_apt_install_packages}"
