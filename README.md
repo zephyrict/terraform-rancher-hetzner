@@ -1,4 +1,4 @@
-# Setup Rancher 2.0 Cluster in Hetzner Cloud
+# Setup Rancher 2.1.5 Cluster in Hetzner Cloud
 
 Terraform script to setup a Rancher Cluster on the Provider Hetzner Cloud using the Domain Name Services (DNS) of Zeit.
 
@@ -10,15 +10,15 @@ Terraform script to setup a Rancher Cluster on the Provider Hetzner Cloud using 
 [Zeit](https://zeit.co/world)
 [Terraform](https://www.terraform.io)
 
-* Rancher 2.0 as a Kubernetes Cluster
+* Rancher 2.1.5 as a Kubernetes Cluster
 * Letsencrypt SSL Certificate
 * Kubernetes Cluster with 4 nodes
-* Docker 1.13.1
-* Ubuntu 16.04.04 LTS
+* Docker v18.x
+* Ubuntu 18.04.1 LTS
 * Firewall UFW
 * Network Hardening
 * Hetzner Cloud API
-* Zeit DNS 
+* Zeit DNS
 * Terraform Scripts
 
 For Rancher 1.6 have a look into the backup file in the services/rancher-nginx folder.
